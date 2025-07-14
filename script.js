@@ -113,6 +113,7 @@ function findCommunities() {
   }
 }
 
+//logout
 function logout() {
   signOut(auth)
     .then(() => {
