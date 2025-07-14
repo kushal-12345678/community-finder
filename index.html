@@ -1,38 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Community Connector</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1>Community Connector</h1>
 
     <div id="auth-section">
-      <input type="email" id="email" placeholder="Email">
-      <input type="password" id="password" placeholder="Password">
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
       <button id="signup-btn">Sign Up</button>
       <button id="login-btn">Log In</button>
     </div>
 
     <div id="form-section" style="display: none;">
       <h2>Tell us about yourself</h2>
-      <input type="text" id="interests" placeholder="Your Interests (e.g., coding, yoga)">
-      <input type="text" id="skills" placeholder="Your Skills (e.g., Python, painting)">
-      <input type="text" id="hobbies" placeholder="Your Hobbies (e.g., chess, reading)">
+      <input type="text" id="interests" placeholder="Your Interests (e.g., coding, yoga)" />
+      <input type="text" id="skills" placeholder="Your Skills (e.g., Python, painting)" />
+      <input type="text" id="hobbies" placeholder="Your Hobbies (e.g., chess, reading)" />
       <button id="find-btn">Find Communities</button>
       <button id="logout-btn">Log Out</button>
-
-
-      
-
       <div id="results"></div>
     </div>
   </div>
 
-  <script src="firebase-config.js" type="module"></script>
+  <!-- ✅ Firebase SDKs (Module CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyA_x9Xqfcd6IobGfX3oZoS6ha8NWbN-Z0I",
+  authDomain: "community-finder-5ea2c.firebaseapp.com",
+  projectId: "community-finder-5ea2c",
+  //storageBucket: "community-finder-5ea2c.firebasestorage.app",
+  //messagingSenderId: "464825225781",
+  appId: "1:464825225781:web:adbc2866dda3cb361bd77c"
+   };  
+
+    /*const firebaseConfig = {
+      apiKey: "",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
+      // Add other config if needed
+    };*/
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Expose Firebase to window
+    window.firebase = {
+      auth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    };
+  </script>
+
+  <!-- ✅ Your Local Scripts -->
   <script src="script.js" type="module"></script>
 </body>
 </html>
