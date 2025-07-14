@@ -1,5 +1,6 @@
 // script.js
 import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "./firebase-config.js";
+import { signOut } from "firebase/auth";
 
 // Show form only after login
 onAuthStateChanged(auth, (user) => {
@@ -37,6 +38,11 @@ function findCommunities() {
   const skills = document.getElementById("skills").value.toLowerCase();
   const hobbies = document.getElementById("hobbies").value.toLowerCase();
 
+  if (!interests && !skills && !hobbies) {
+    alert("Please enter at least one field (interest, skill, or hobby).");
+    return;
+  }
+
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "<h3>Recommended Communities:</h3>";
 
@@ -58,7 +64,31 @@ function findCommunities() {
       address: "Library Lane, Delhi",
       phone: "+91 99887 77665",
       event: "Chess Tournament - July 30"
-    }
+    },
+    {
+      name: "Cricket & Flutter Group",
+      address: "Wagari sector, Mumbai",
+      phone: "+91 99205 19665",
+      event: "Cricket Tournament - Aug 23 "
+    },
+    {
+      name: "Tennis & PlayStation Group",
+      address: "Sector-43, Delhi",
+      phone: "+91 84561 20232",
+      event: "Tennis Tournament - Aug 30"
+    },
+    {
+      name: "Chess Group",
+      address: "Kichobad, Kolkata",
+      phone: "+91 94247 50311",
+      event: "Chess Tournament - Sept 5"
+    },
+    {
+      name: "Group Musicaa",
+      address: "Manek chowk, Ahmedabad",
+      phone: "+91 78620 31456",
+      event: "Chess Tournament - July 30"
+    },
   ];
 
   const matched = dummyData.filter((item) =>
@@ -83,7 +113,20 @@ function findCommunities() {
   }
 }
 
+function logout() {
+  signOut(auth)
+    .then(() => {
+      alert("Logged out!");
+      document.getElementById("form-section").style.display = "none";
+      document.getElementById("auth-section").style.display = "block";
+    })
+    .catch((error) => {
+      alert("Error logging out: " + error.message);
+    });
+}
+
 window.signup = signup;
 window.login = login;
 window.findCommunities = findCommunities;
+window.logout = logout;
 
