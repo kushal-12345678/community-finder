@@ -82,3 +82,8 @@ function findCommunities() {
     });
   }
 }
+
+window.signup = signup;
+window.login = login;
+window.findCommunities = findCommunities;
+
