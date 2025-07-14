@@ -113,7 +113,6 @@ function findCommunities() {
   }
 }
 
-//logout
 function logout() {
   signOut(auth)
     .then(() => {
@@ -126,8 +125,14 @@ function logout() {
     });
 }
 
-window.signup = signup;
+/*window.signup = signup;
 window.login = login;
 window.findCommunities = findCommunities;
-window.logout = logout;
+window.logout = logout;*/
+
+document.getElementById("signup-btn")?.addEventListener("click", signup);
+document.getElementById("login-btn")?.addEventListener("click", login);
+document.getElementById("logout-btn")?.addEventListener("click", logout);
+document.getElementById("find-btn")?.addEventListener("click", findCommunities);
+
 
