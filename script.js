@@ -23,7 +23,11 @@ function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   signInWithEmailAndPassword(auth, email, password)
-    .then(() => alert("Login successful!"))
+    .then(() => {
+      alert("Login successful!");
+      document.getElementById("form-section").style.display = "block";
+      document.getElementById("auth-section").style.display = "none";
+    })
     .catch((error) => alert("Error: " + error.message));
 }
 
@@ -36,7 +40,6 @@ function findCommunities() {
   const resultsDiv = document.getElementById("results");
   resultsDiv.innerHTML = "<h3>Recommended Communities:</h3>";
 
-  // Simulated Gemini output (based on dummy logic)
   const dummyData = [
     {
       name: "AI & Coding Club",
@@ -58,7 +61,6 @@ function findCommunities() {
     }
   ];
 
-  // Filter results based on keywords (basic simulation)
   const matched = dummyData.filter((item) =>
     item.name.toLowerCase().includes(interests) ||
     item.name.toLowerCase().includes(skills) ||
