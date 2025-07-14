@@ -1,6 +1,13 @@
 // script.js
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "./firebase-config.js";
-import { signOut } from "firebase/auth";
+
+// Access Firebase from global window object
+const {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} = window.firebase;
 
 // Show form only after login
 onAuthStateChanged(auth, (user) => {
@@ -32,7 +39,7 @@ function login() {
     .catch((error) => alert("Error: " + error.message));
 }
 
-// Simulated Gemini response
+// Find communities (Gemini simulation)
 function findCommunities() {
   const interests = document.getElementById("interests").value.toLowerCase();
   const skills = document.getElementById("skills").value.toLowerCase();
@@ -69,7 +76,7 @@ function findCommunities() {
       name: "Cricket & Flutter Group",
       address: "Wagari sector, Mumbai",
       phone: "+91 99205 19665",
-      event: "Cricket Tournament - Aug 23 "
+      event: "Cricket Tournament - Aug 23"
     },
     {
       name: "Tennis & PlayStation Group",
@@ -87,7 +94,7 @@ function findCommunities() {
       name: "Group Musicaa",
       address: "Manek chowk, Ahmedabad",
       phone: "+91 78620 31456",
-      event: "Chess Tournament - July 30"
+      event: "Live Jam - Sept 10"
     },
   ];
 
@@ -113,6 +120,7 @@ function findCommunities() {
   }
 }
 
+// Logout
 function logout() {
   signOut(auth)
     .then(() => {
@@ -125,14 +133,8 @@ function logout() {
     });
 }
 
-/*window.signup = signup;
-window.login = login;
-window.findCommunities = findCommunities;
-window.logout = logout;*/
-
+// Event listeners (connect UI to logic)
 document.getElementById("signup-btn")?.addEventListener("click", signup);
 document.getElementById("login-btn")?.addEventListener("click", login);
 document.getElementById("logout-btn")?.addEventListener("click", logout);
 document.getElementById("find-btn")?.addEventListener("click", findCommunities);
-
-
