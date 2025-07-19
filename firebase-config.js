@@ -25,5 +25,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Export auth object for use in script.js
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged };
+/* Export auth object for use in script.js
+export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged }; */
+
+//Make auth globally available
+window.auth=auth;
